@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Contacts</title>
+    <link rel="stylesheet" href="static/view.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Contact List</h1>
+        <form method="get" action="/view" class="search-form">
+            <input type="text" name="query" placeholder="Search contacts..." required>
+            <button type="submit">Search</button>
+        </form>
+        <ul class="contact-list">
+            {% for contact in contacts %}
+            <li>
+                <span>{{ contact.name }} - {{ contact.phone }}</span>
+                <form action="/remove/{{ contact.id }}" method="post" style="display:inline;">
+                    <button type="submit" class="remove-btn">Remove</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="/" class="back-link">Back to Home</a>
+    </div>
+</body>
+</html>
